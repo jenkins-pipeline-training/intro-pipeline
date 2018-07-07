@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Say Hello') {
+    stage('Really') {
       steps {
         echo 'Hello World'
         sh 'java -version'
