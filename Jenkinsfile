@@ -1,16 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage('Really') {
+    stage('Say Hello') {
       steps {
-        echo "Hello ${MY_NAME}!"
-        echo "Username is $USER_USR"
-        echo "Password is $USER_PSW"
+        echo "Hello ${params.Name}!"
+        sh 'java -version'
+        echo "${TEST_USER_USR}"
+        echo "${TEST_USER_PSW}"
       }
     }
   }
   environment {
     MY_NAME = 'Mary'
-    USER = credentials('password')
+    TEST_USER = credentials('test-user')
+  }
+  parameters {
+    string(name: 'Name', defaultValue: 'whoever you are', description: 'Who should I say hi to?')
   }
 }
